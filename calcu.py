@@ -17,16 +17,54 @@ def clear() :
     
 # add
 def add() :
+    global operation
+    operation = 'add'
     num =e.get()
     global mem
     mem = int(num)
     e.delete(0,END)
 
+# subtraction
+def sub() :
+    global operation
+    operation = 'sub'
+    num =e.get()
+    global mem
+    mem = int(num)
+    e.delete(0,END)
+
+# divide
+def div() :
+    global operation
+    operation = 'div'
+    num =e.get()
+    global mem
+    mem = int(num)
+    e.delete(0,END)
+
+# multiplication
+def mul() :
+    global operation
+    operation = 'mul'
+    num =e.get()
+    global mem
+    mem = int(num)
+    e.delete(0,END)
+
+
 #result
 def equal () :
     next_value = e.get()
     e.delete(0,END)
-    e.insert(0,mem + int(next_value))
+
+    if operation == "add" :
+        e.insert(0,mem + int(next_value))
+    if operation == "sub" :
+        e.insert(0,mem - int(next_value))
+    if operation == "mul" :
+        e.insert(0,mem * int(next_value))
+    if operation == "div" :
+        e.insert(0,mem / int(next_value))
 
 # buttons
 button0= Button(window,text="0", padx=40,pady=20,command =lambda:click(0))
@@ -41,9 +79,9 @@ button8= Button(window,text="8" ,padx=40,pady=20,command =lambda:click(8))
 button9= Button(window,text="9" ,padx=40,pady=20,command =lambda:click(9))
 
 button_add= Button(window,text="+" ,padx=40,pady=20,command =add)
-button_mul= Button(window,text="*" ,padx=40,pady=20,command =click)
-button_sub= Button(window,text="-" ,padx=40,pady=20,command =click)
-button_div= Button(window,text="/" ,padx=40,pady=20,command =click)
+button_mul= Button(window,text="*" ,padx=40,pady=20,command =mul)
+button_sub= Button(window,text="-" ,padx=40,pady=20,command =sub)
+button_div= Button(window,text="/" ,padx=40,pady=20,command =div)
 
 button_equals= Button(window,text="=" ,padx=40,pady=20,command =equal)
 button_clear= Button(window,text="C" ,padx=40,pady=20,command =clear)
