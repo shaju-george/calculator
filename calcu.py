@@ -4,7 +4,7 @@
 
 from tkinter import *
 import tkinter.ttk as ttk
-
+from tkinter import messagebox
 
 window=Tk()
 
@@ -12,15 +12,18 @@ window=Tk()
 style = ttk.Style(window)
 #style.theme_use("clam")
 style.theme_use("classic")
-
 style.map("C.TButton",
    foreground=[('!active', 'black'),('pressed', 'red'), ('active', 'white')],
     background=[ ('pressed', 'white'), ('active', '#ffcce6')]
     )
-'''
 
+'''
+#s#h#a#j#u
 window.title("Calculator")
 
+window.geometry('425x350')
+window.configure(bg='#f9ecec')
+window.resizable(0,0)
 
 # getting input values
 def click(number) :
@@ -38,8 +41,9 @@ def add() :
     operation = 'add'
     num =e.get()
     global mem
-    mem = int(num)
+    mem = float(num)
     e.delete(0,END)
+    
 
 # subtraction
 def sub() :
@@ -47,7 +51,7 @@ def sub() :
     operation = 'sub'
     num =e.get()
     global mem
-    mem = int(num)
+    mem = float(num)
     e.delete(0,END)
 
 # divide
@@ -56,7 +60,7 @@ def div() :
     operation = 'div'
     num =e.get()
     global mem
-    mem = int(num)
+    mem = float(num)
     e.delete(0,END)
 
 # multiplication
@@ -65,23 +69,53 @@ def mul() :
     operation = 'mul'
     num =e.get()
     global mem
-    mem = int(num)
+    mem = float(num)
     e.delete(0,END)
-
+'''
+def equal():
+    value = e.get()
+    e.delete(0,END)
+    global t
+    if operation == "add" :
+        e.insert(0,float(value))
+        
+        t = float(value)'''
 
 #result
 def equal () :
     next_value = e.get()
     e.delete(0,END)
-
+    global t
     if operation == "add" :
-        e.insert(0,mem + int(next_value))
+        e.insert(0,mem + float(next_value))
+        
+        t = mem + float(next_value)
     if operation == "sub" :
-        e.insert(0,mem - int(next_value))
+        e.insert(0,mem - float(next_value))
+        t = mem - float(next_value)
     if operation == "mul" :
-        e.insert(0,mem * int(next_value))
+        e.insert(0,mem * float(next_value))
+        t = mem * float(next_value)
     if operation == "div" :
-        e.insert(0,mem / int(next_value))
+        if float(next_value)== 0:
+            messagebox.showerror("Error","Division by zero not supported")
+        else:
+            e.insert(0,mem / float(next_value))
+            t = mem / float(next_value)
+
+        
+# Prev answer
+def ans():
+    e.delete(0,END)
+    e.insert(0, t)
+
+#dot button
+def dot():
+    temp= e.get()
+    e.delete(0,END)
+    e.insert (0,str(temp)+".")
+
+
 
 # buttons
 button0= ttk.Button(window,text="0",command =lambda:click(0))
@@ -100,34 +134,42 @@ button_mul= ttk.Button(window,text="*" ,command =mul)
 button_sub= ttk.Button(window,text="-" ,command =sub)
 button_div= ttk.Button(window,text="/" ,command =div)
 
+button_dot= ttk.Button(window,text="." ,command =dot)
+
 button_equals= ttk.Button(window,text="=", command =equal)
 button_clear= ttk.Button(window,text="C" ,command =clear)
+button_ans= ttk.Button(window,text="ans",command =ans)
 
-button0.grid(row=4,column=0,padx=0,pady=0)
-button1.grid(row=3,column=0)
-button2.grid(row=3,column=1)
-button3.grid(row=3,column=2)
-button4.grid(row=2,column=0)
-button5.grid(row=2,column=1)
-button6.grid(row=2,column=2)
-button7.grid(row=1,column=0)
-button8.grid(row=1,column=1)
-button9.grid(row=1,column=2)
-button_add.grid(row=4,column=1)
-button_mul.grid(row=5,column=0)
-button_sub.grid(row=4,column=2)
-button_div.grid(row=6,column=0)
-button_equals.grid(row=6,column=1 ,columnspan =2,padx=0)
-button_clear.grid(row=5,column=1,columnspan=2)
+#button0.shaju.place(height=80, width=100, x=300, y=300)
+
+button0.grid(row=4,column=1,padx=5,pady=5,ipadx=10,ipady=10)
+button1.grid(row=3,column=2,padx=5,pady=5,ipadx=10,ipady=10)
+button2.grid(row=3,column=1,padx=5,pady=5,ipadx=10,ipady=10)
+button3.grid(row=3,column=0,padx=5,pady=5,ipadx=10,ipady=10)
+button4.grid(row=2,column=2,padx=5,pady=5,ipadx=10,ipady=10)
+button5.grid(row=2,column=1,padx=5,pady=5,ipadx=10,ipady=10)
+button6.grid(row=2,column=0,padx=5,pady=5,ipadx=10,ipady=10)
+button7.grid(row=1,column=2,padx=5,pady=5,ipadx=10,ipady=10)
+button8.grid(row=1,column=1,padx=5,pady=5,ipadx=10,ipady=10)
+button9.grid(row=1,column=0,padx=5,pady=5,ipadx=10,ipady=10)
+button_add.grid(row=1,column=3,padx=5,pady=5,ipadx=10,ipady=10)
+button_mul.grid(row=3,column=3,padx=5,pady=5,ipadx=10,ipady=10)
+button_sub.grid(row=2,column=3,padx=5,pady=5,ipadx=10,ipady=10)
+button_div.grid(row=4,column=3,padx=5,pady=5,ipadx=10,ipady=10)
+button_equals.grid(row=5,column=2 ,columnspan =2,padx=5,pady=5,ipadx=50,ipady=10)
+button_clear.grid(row=4,column=2,padx=5,pady=5,ipadx=10,ipady=10)
+button_ans.grid(row=4,column=0,padx=5,pady=5,ipadx=10,ipady=10)
+button_dot.grid(row=5,column=0,padx=5,pady=5,ipadx=10,ipady=10)
 
 
 # output
 
 e = Entry (window,width = 36 ,borderwidth =5)
-e.grid(row=0,column =0,columnspan =3,padx=10,pady=20)
-
+e.grid(row=0,column =0,columnspan =4,ipadx=40,pady=10,ipady=10)
 
 
 
 window.mainloop
+
+
 
