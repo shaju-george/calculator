@@ -3,7 +3,16 @@
 from tkinter import *
 import tkinter.ttk as ttk
 from tkinter import messagebox
+from math import factorial as fac
+from math import log10 as logof
+from math import pow as power
+from math import sqrt as square_root
+from math import sin as sine
+from math import cos as cose
+from math import tan as tangent
 import math
+
+
 
 window=Tk()
 
@@ -35,41 +44,31 @@ def clear() :
     
 # add
 def add() :
-    global operation
-#   operation = 'add'
+    
     num =e.get()
-   # global mem
-   # mem = float(num)
     e.delete(0,END)
     e.insert(0 ,num + '+')
     
-
 # subtraction
 def sub() :
-    global operation
-    operation = 'sub'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
+    e.insert(0 ,num + '-')
 
 # divide
 def div() :
-    global operation
-    operation = 'div'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
+    e.insert(0 ,num + '/')
 
 # multiplication
 def mul() :
-    global operation
-    operation = 'mul'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
+    e.insert(0 ,num + '*')
 '''
 def equal():
     value = e.get()
@@ -126,20 +125,27 @@ def equal () :
 def equal():
     equation= e.get()
     e.delete(0,END)
-    e.insert(0,eval(equation))
+    try :
+        e.insert(0,eval(equation))
+    except ZeroDivisionError:
+        messagebox.showerror("Error","Division by zero not supported ")
+    except ValueError :
+        messagebox.showerror("Error","Value error , invalid input {eg : log(-x)}")
     global mem
     mem = eval(equation)
         
 # Prev answer
 def ans():
+    temp= e.get()
     e.delete(0,END)
-    e.insert(0, mem)
+    
+    e.insert(0,temp + str(mem))
 
 #dot button
 def dot():
     temp= e.get()
     e.delete(0,END)
-    e.insert (0,str(temp)+".")
+    e.insert (0,temp+".")
     
 def back():
     c = e.get()
@@ -147,92 +153,96 @@ def back():
     e.insert(0,c[:-1])
 
 def fact():
-    global operation
-    operation = 'fact'
+    
     num =e.get()
-    global mem
-    mem1 = float(num)
-    mem = int(mem1)
     e.delete(0,END)
-    e.insert(0,str(mem)+'!')
+    e.insert(0,'fac(' + num + ')' )
 
 def log():
-    global operation
-    operation = 'log'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    e.insert(0,'log(' +str(num)+')')
+    e.insert(0,'logof(' +str(num)+')')
 
 
 def sin():
-    global operation
-    operation = 'sin'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    e.insert(0,'sin(' +str(num)+')')
+    e.insert(0,'sine(' +str(num)+')')
 
 def cos():
-    global operation
-    operation = 'cos'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    e.insert(0,'cos(' +str(num)+')')
+    e.insert(0,'cose(' +str(num)+')')
 
 def tan():
-    global operation
-    operation = 'tan'
+   
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    e.insert(0,'tan(' +str(num)+')')
+    e.insert(0,'tangent(' +str(num)+')')
 
 def sqrt():
-    global operation
-    operation = 'sqrt'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    e.insert(0,'sqrt(' +str(num)+')')
+    e.insert(0,'squar_root(' +str(num)+')')
 
 
 def pow1():
-    global operation
-    operation = 'pow'
+    
     num =e.get()
-    global mem
-    mem = float(num)
     e.delete(0,END)
-    # e.insert(0,(str(num)+'^'))
+    e.insert(0,'power('+num +',')
+
+def opening():
+    
+    num =e.get()
+    e.delete(0,END)
+    e.insert(0,num+'(')
+
+def closing():
+    
+    num =e.get()
+    e.delete(0,END)
+    e.insert(0,num+')')
     
 def pi():
-    global operation
+
+    num =e.get()
     e.delete(0,END)
-    e.insert(0,math.pi)
+    e.insert(0,num + str(math.pi))
 
 def math_e():
-    global operation
+
+    num =e.get()
     e.delete(0,END)
-    e.insert(0,math.e)
+    e.insert(0,num + str(math.e))
 
 memory = 0
 def m_plus():
     global memory
     memory1 = e.get()
-    memory = memory + float(memory1)
+    try :
+        a= eval(memory1)
+    except ZeroDivisionError:
+        messagebox.showerror("Error","Division by zero not supported ")
+    except ValueError :
+        messagebox.showerror("Error","Value error , invalid input {eg : log(-x)}")
+    memory = memory + a
     e.delete(0,END)
     
 def m_minus():
     global memory
     memory1 = e.get()
-    memory = memory - float(memory1)
+    try :
+        a= eval(memory1)
+    except ZeroDivisionError:
+        messagebox.showerror("Error","Division by zero not supported ")
+    except ValueError :
+        messagebox.showerror("Error","Value error , invalid input {eg : log(-x)}")
+    memory = memory - a
     e.delete(0,END)
 
 def mr():
@@ -246,7 +256,7 @@ def mr():
 def mc():
     global memory
     memory = 0
-    e.delete(0,END)
+    
 
 
 # buttons
@@ -262,7 +272,7 @@ button8= ttk.Button(window,text="8" ,command =lambda:click(8))
 button9= ttk.Button(window,text="9" ,command =lambda:click(9))
 
 button_add= ttk.Button(window,text="+" ,command =add)
-button_mul= ttk.Button(window,text="*" ,command =mul)
+button_mul= ttk.Button(window,text="x" ,command =mul)
 button_sub= ttk.Button(window,text="-" ,command =sub)
 button_div= ttk.Button(window,text="/" ,command =div)
 
@@ -288,6 +298,9 @@ button_mr= ttk.Button(window,text="mr",command = mr)
 button_mc= ttk.Button(window,text="mc",command = mc)
 button_mp = ttk.Button(window,text="m+",command = m_plus)
 button_mm = ttk.Button(window,text="m-",command = m_minus)
+
+button_opening = ttk.Button(window,text="(",command = opening)
+button_closing = ttk.Button(window,text=")",command = closing)
 #button0.shaju.place(height=80, width=100, x=300, y=300)
 
 button0.grid(row=4,column=1,padx=5,pady=5,ipadx=10,ipady=10)
@@ -322,6 +335,8 @@ button_mr.grid(row=9,column=0,padx=5,pady=5,ipadx=10,ipady=10)
 button_mc.grid(row=9,column=1,padx=5,pady=5,ipadx=10,ipady=10)
 button_mp.grid(row=9,column=2,padx=5,pady=5,ipadx=10,ipady=10)
 button_mm.grid(row=9,column=3,padx=5,pady=5,ipadx=10,ipady=10)
+button_opening.grid(row=8,column=1,padx=5,pady=5,ipadx=10,ipady=10)
+button_closing.grid(row=8,column=2,padx=5,pady=5,ipadx=10,ipady=10)
 # output
 
 e = Entry (window,width = 36 ,borderwidth =5)
