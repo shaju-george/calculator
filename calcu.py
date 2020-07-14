@@ -13,21 +13,14 @@ from math import tan as tangent
 import math
 import datetime
 import webbrowser
+from time import sleep
 
 
 
 
 window=Tk()
 
-'''
-style = ttk.Style(window)
-#style.theme_use("clam")
-style.theme_use("classic")
-style.map("C.TButton",
-   foreground=[('!active', 'black'),('pressed', 'red'), ('active', 'white')],
-    background=[ ('pressed', 'white'), ('active', '#ffcce6')]
-    )
-'''
+
 #s#h#a#j#u
 window.title("Calculator")
 
@@ -35,14 +28,14 @@ window.geometry('452x440')
 window.configure(bg='#f9ecec')
 window.resizable(0,0)
 
-#icon
 
+#icon
 window.iconbitmap('calculator1.ico')
 
 
 #menu
 def blue():
-       window.configure(bg='blue')     
+       window.configure(bg='#000099')     
 def dark():
        window.configure(bg='black')
 def white():
@@ -55,11 +48,12 @@ def time():
     e.delete(0,END)
     e.insert(0 ,now)
 def title():
-    
     name1 = input('Enter your name :')
     e.insert(0 ,"hi " +name1 +" !")
     name = input('Enter New title for calculator :')
     window.title(name)
+
+    
 def helppp():
     webbrowser.open('https://www.quora.com/', new=2)
 def cross():
@@ -81,11 +75,11 @@ Menus.add_separator()
 
 views = Menu(my_menu)
 my_menu.add_cascade(label ='Views',menu=views)
-views.add_command (label ='Blue',command=blue)
+views.add_command (label ='White',command=white)
 views.add_separator()
 views.add_command (label ='Dark',command=dark)
 views.add_separator()
-views.add_command (label ='White',command=white)
+views.add_command (label ='Blue',command=blue)
 views.add_separator()
 views.add_command (label ='Default',command=default)
 
@@ -130,59 +124,7 @@ def mul() :
     num =e.get()
     e.delete(0,END)
     e.insert(0 ,num + '*')
-'''
-def equal():
-    value = e.get()
-    e.delete(0,END)
-    global t
-    if operation == "add" :
-        e.insert(0,float(value))
-        
-        t = float(value)
 
-#result
-def equal () :
-    next_value = e.get()
-    e.delete(0,END)
-    global t
-    if operation == "add" :
-        e.insert(0,mem + float(next_value))
-        
-        t = mem + float(next_value)
-    if operation == "sub" :
-        e.insert(0,mem - float(next_value))
-        t = mem - float(next_value)
-    if operation == "mul" :
-        e.insert(0,mem * float(next_value))
-        t = mem * float(next_value)
-    if operation == "div" :
-        if float(next_value)== 0:
-            messagebox.showerror("Error","Division by zero not supported")
-        else:
-            e.insert(0,mem / float(next_value))
-            t = mem / float(next_value)
-    if operation == "fact" :
-        e.insert(0,math.factorial(mem))
-        t = math.factorial(mem)
-    if operation == "log" :
-        e.insert(0,math.log10(mem))
-        t = math.log10(mem)
-    if operation == "sin" :
-        e.insert(0,math.sin(mem))
-        t = math.sin(mem)
-    if operation == "tan" :
-        e.insert(0,math.tan(mem))
-        t = math.tan(mem)
-    if operation == "cos" :
-        e.insert(0,math.cos(mem))
-        t = math.cos(mem)
-    if operation == "sqrt" :
-        e.insert(0,math.sqrt(mem))
-        t = math.sqrt(mem)
-    if operation == "pow" :
-        e.insert(0,math.pow(mem,float(next_value)))
-        t = math.pow(mem,float(next_value))
-  '''
 def equal():
     equation= e.get()
     e.delete(0,END)
