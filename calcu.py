@@ -48,6 +48,7 @@ def time():
     e.delete(0,END)
     e.insert(0 ,now)
 def title():
+    e.delete(0,END)
     name1 = input('Enter your name :')
     e.insert(0 ,"hi " +name1 +" !")
     name = input('Enter New title for calculator :')
