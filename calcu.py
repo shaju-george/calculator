@@ -11,6 +11,9 @@ from math import sin as sine
 from math import cos as cose
 from math import tan as tangent
 import math
+import datetime
+import webbrowser
+
 
 
 
@@ -28,13 +31,67 @@ style.map("C.TButton",
 #s#h#a#j#u
 window.title("Calculator")
 
-window.geometry('452x418')
+window.geometry('452x440')
 window.configure(bg='#f9ecec')
 window.resizable(0,0)
 
 #icon
 
 window.iconbitmap('calculator1.ico')
+
+
+#menu
+def blue():
+       window.configure(bg='blue')     
+def dark():
+       window.configure(bg='black')
+def white():
+       window.configure(bg='white')
+def default():
+       window.configure(bg='#f9ecec')  
+
+def time():
+    now = datetime.datetime.now()
+    e.delete(0,END)
+    e.insert(0 ,now)
+def title():
+    
+    name1 = input('Enter your name :')
+    e.insert(0 ,"hi " +name1 +" !")
+    name = input('Enter New title for calculator :')
+    window.title(name)
+def helppp():
+    webbrowser.open('https://www.quora.com/', new=2)
+def cross():
+    webbrowser.open('https://www.youtube.com/channel/UCoGHeFY7jE2OB_TJS_87MOA', new=2)
+
+my_menu = Menu(window)
+window.config(menu = my_menu)
+
+Menus = Menu(my_menu)
+my_menu.add_cascade(label ='Menu',menu=Menus)
+Menus.add_command (label ='Date & Time',command=time)
+Menus.add_separator()
+Menus.add_command (label ='Help',command=  helppp)
+Menus.add_separator()
+Menus.add_command (label ='Change Title',command= title)
+Menus.add_separator()
+Menus.add_command (label ='Exit',command=  quit)
+Menus.add_separator()
+
+views = Menu(my_menu)
+my_menu.add_cascade(label ='Views',menu=views)
+views.add_command (label ='Blue',command=blue)
+views.add_separator()
+views.add_command (label ='Dark',command=dark)
+views.add_separator()
+views.add_command (label ='White',command=white)
+views.add_separator()
+views.add_command (label ='Default',command=default)
+
+team = Menu(my_menu)
+my_menu.add_cascade(label ='About',menu=team)
+team.add_command (label ='Team',command=cross)
 
 # getting input values
 def click(number) :
