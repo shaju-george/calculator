@@ -32,6 +32,10 @@ window.geometry('452x418')
 window.configure(bg='#f9ecec')
 window.resizable(0,0)
 
+#icon
+
+window.iconbitmap('calculator1.ico')
+
 # getting input values
 def click(number) :
     temp= e.get()
