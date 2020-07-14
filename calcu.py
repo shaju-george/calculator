@@ -28,7 +28,7 @@ style.map("C.TButton",
 #s#h#a#j#u
 window.title("Calculator")
 
-window.geometry('425x600')
+window.geometry('452x418')
 window.configure(bg='#f9ecec')
 window.resizable(0,0)
 
@@ -139,7 +139,7 @@ def ans():
     temp= e.get()
     e.delete(0,END)
     
-    e.insert(0,temp + str(mem))
+    e.insert(0, mem)
 
 #dot button
 def dot():
@@ -187,7 +187,7 @@ def sqrt():
     
     num =e.get()
     e.delete(0,END)
-    e.insert(0,'squar_root(' +str(num)+')')
+    e.insert(0,'square_root(' +str(num)+')')
 
 
 def pow1():
@@ -301,46 +301,55 @@ button_mm = ttk.Button(window,text="m-",command = m_minus)
 
 button_opening = ttk.Button(window,text="(",command = opening)
 button_closing = ttk.Button(window,text=")",command = closing)
-#button0.shaju.place(height=80, width=100, x=300, y=300)
 
-button0.grid(row=4,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button1.grid(row=3,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button2.grid(row=3,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button3.grid(row=3,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button4.grid(row=2,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button5.grid(row=2,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button6.grid(row=2,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button7.grid(row=1,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button8.grid(row=1,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button9.grid(row=1,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_add.grid(row=1,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_mul.grid(row=3,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_sub.grid(row=2,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_div.grid(row=4,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_equals.grid(row=5,column=2 ,columnspan =2,padx=5,pady=5,ipadx=50,ipady=10)
-button_clear.grid(row=4,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button_ans.grid(row=4,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_dot.grid(row=5,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_back.grid(row=5,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button_fact.grid(row=6,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button_sqrt.grid(row=6,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button_log.grid(row=6,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_sin.grid(row=6,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_cos.grid(row=7,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_tan.grid(row=7,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button_pow.grid(row=7,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button_pi.grid(row=7,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_e.grid(row=8,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_mr.grid(row=9,column=0,padx=5,pady=5,ipadx=10,ipady=10)
-button_mc.grid(row=9,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button_mp.grid(row=9,column=2,padx=5,pady=5,ipadx=10,ipady=10)
-button_mm.grid(row=9,column=3,padx=5,pady=5,ipadx=10,ipady=10)
-button_opening.grid(row=8,column=1,padx=5,pady=5,ipadx=10,ipady=10)
-button_closing.grid(row=8,column=2,padx=5,pady=5,ipadx=10,ipady=10)
+
+#button0.shaju.place(height=80, width=100, x=300, y=300)
+button_pi.grid(row=1,column=0,padx=2,pady=2,ipadx=5,ipady=10)
+button_mr.grid(row=1,column=2,padx=2,pady=0,ipadx=5,ipady=10)
+button_mc.grid(row=1,column=1,padx=2,pady=0,ipadx=5,ipady=10)
+button_mp.grid(row=1,column=3,padx=2,pady=0,ipadx=5,ipady=10)
+button_mm.grid(row=1,column=4,padx=2,pady=0,ipadx=5,ipady=10)
+
+button_e.grid(row=2,column=0,padx=0,pady=2,ipadx=5,ipady=10)
+button_log.grid(row=2,column=1,padx=0,pady=0,ipadx=5,ipady=10)
+button_sin.grid(row=2,column=2,padx=0,pady=0,ipadx=5,ipady=10)
+button_cos.grid(row=2,column=3,padx=0,pady=0,ipadx=5,ipady=10)
+button_tan.grid(row=2,column=4,padx=0,pady=0,ipadx=5,ipady=10)
+
+button_back.grid(row=3,column=3,padx=0,pady=2,ipadx=5,ipady=10)
+button_fact.grid(row=3,column=0,padx=0,pady=0,ipadx=5,ipady=10)
+button_sqrt.grid(row=3,column=1,padx=0,pady=0,ipadx=5,ipady=10)
+button_div.grid(row=3,column=4,padx=0,pady=0,ipadx=5,ipady=10)
+button_clear.grid(row=3,column=2,padx=0,pady=0,ipadx=5,ipady=10)
+
+button_pow.grid(row=4,column=0,padx=0,pady=2,ipadx=5,ipady=10)
+button7.grid(row=4,column=3,padx=0,pady=2,ipadx=5,ipady=10)
+button8.grid(row=4,column=2,padx=0,pady=2,ipadx=5,ipady=10)
+button9.grid(row=4,column=1,padx=0,pady=2,ipadx=5,ipady=10)
+button_mul.grid(row=4,column=4,padx=0,pady=2,ipadx=5,ipady=10)
+
+button4.grid(row=5,column=3,padx=0,pady=2,ipadx=5,ipady=10)
+button5.grid(row=5,column=2,padx=0,pady=2,ipadx=5,ipady=10)
+button6.grid(row=5,column=1,padx=0,pady=2,ipadx=5,ipady=10)
+button_sub.grid(row=5,column=4,padx=0,pady=2,ipadx=5,ipady=10)
+button_ans.grid(row=5,column=0,padx=0,pady=2,ipadx=5,ipady=10)
+
+button_opening.grid(row=6,column=0,padx=0,pady=2,ipadx=5,ipady=10)
+button1.grid(row=6,column=3,padx=0,pady=0,ipadx=5,ipady=10)
+button2.grid(row=6,column=2,padx=0,pady=0,ipadx=5,ipady=10)
+button3.grid(row=6,column=1,padx=0,pady=0,ipadx=5,ipady=10)
+button_add.grid(row=6,column=4,padx=0,pady=0,ipadx=5,ipady=10)
+
+button_dot.grid(row=7,column=1,padx=0,pady=2,ipadx=5,ipady=10)
+button0.grid(row=7,column=2,padx=0,pady=2,ipadx=5,ipady=10)
+button_closing.grid(row=7,column=0,padx=0,pady=2,ipadx=5,ipady=10)
+button_equals.grid(row=7,column=3 ,columnspan =2,padx=0,pady=2,ipadx=48,ipady=10)
+
+
 # output
 
-e = Entry (window,width = 36 ,borderwidth =5)
-e.grid(row=0,column =0,columnspan =4,ipadx=40,pady=10,ipady=10)
+e = Entry (window,width = 36 ,borderwidth =10)
+e.grid(row=0,column =0,columnspan =5,ipadx=50,pady=5,ipady=12)
 
 
 
